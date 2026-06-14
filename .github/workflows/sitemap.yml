@@ -1,0 +1,60 @@
+name: Generate Sitemap
+
+on:
+  push:
+    branches:
+      - main # আপনার মেইন ব্রাঞ্চের নাম যদি master হয়, তবে main কেটে master লিখুন
+
+jobs:
+  sitemap_job:
+    runs-on: ubuntu-latest
+    name: Generate a sitemap
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # নিখুঁত 'lastmod' তারিখ পাওয়ার জন্য এটি প্রয়োজন
+
+    - name: Generate the sitemap
+      id: sitemap
+      uses: cicirello/generate-sitemap@v1
+      with:
+        base-url-path: name: Generate Sitemap
+
+on:
+  push:
+    branches:
+      - main # আপনার মেইন ব্রাঞ্চের নাম যদি master হয়, তবে main কেটে master লিখুন
+
+jobs:
+  sitemap_job:
+    runs-on: ubuntu-latest
+    name: Generate a sitemap
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # নিখুঁত 'lastmod' তারিখ পাওয়ার জন্য এটি প্রয়োজন
+
+    - name: Generate the sitemap
+      id: sitemap
+      uses: cicirello/generate-sitemap@v1
+      with:
+        base-url-path: https://obaidhqbd.github.io/project1/ # এখানে আপনার ওয়েবসাইটের URL দিন
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add sitemap.xml robots.txt
+        git commit -m "Automated sitemap generation" || echo "No changes to commit"
+        git push
+ # এখানে আপনার ওয়েবসাইটের URL দিন
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add sitemap.xml robots.txt
+        git commit -m "Automated sitemap generation" || echo "No changes to commit"
+        git push
